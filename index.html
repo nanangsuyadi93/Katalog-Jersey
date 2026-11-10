@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -517,7 +517,11 @@
 
   <!-- SCRIPT LOGIC -->
   <script>
-    // DATA KATALOG DESAIN JERSEY MOCKUP DENGAN VECTOR SVG
+    // DATA KATALOG DESAIN JERSEY MOCKUP DENGAN SUPPORT FOTO / GAMBAR
+    // TIPS GANTI FOTO:
+    // 1. Upload foto Anda ke folder di GitHub (misal: "images/jersey1.jpg")
+    // 2. Ganti nilai "image" di bawah dengan nama file/link foto Anda (contoh: "images/jersey1.jpg" atau link url foto)
+    // 3. Jika image diisi "" (kosong), sistem akan otomatis menampilkan mockup vector bawaan.
     const catalogData = [
       {
         id: "J-01",
@@ -525,17 +529,16 @@
         category: "futsal",
         categoryName: "Futsal / Mini Soccer",
         tag: "Terlaris",
+        image: "", // <-- Masukkan URL atau path foto Anda di sini (contoh: "images/jersey-01.jpg")
         primaryColor: "#dc2626", // Red
         secondaryColor: "#1e1b4b", // Deep Blue
         desc: "Kombinasi motif geometris energik warna merah crimson dan navy gelap. Sangat cocok untuk tim penyerang dengan tempo cepat.",
         svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L155 37 L145 75 L145 195 L125 195 L130 70 L100 90 L70 70 L75 195 L55 195 L55 75 L45 37 Z" fill="#991b1b" opacity="0.4"/>
-          <!-- Dynamic diagonal patterns -->
           <polygon points="65,100 135,60 140,80 70,120" fill="#0f172a" opacity="0.8"/>
           <polygon points="60,135 130,95 135,115 65,155" fill="#f8fafc" opacity="0.9"/>
           <polygon points="55,170 125,130 130,150 60,190" fill="#0f172a" opacity="0.8"/>
-          <!-- Collar -->
           <path d="M80 40 C100 52 100 52 120 40" fill="none" stroke="#f8fafc" stroke-width="4"/>
           <circle cx="120" cy="85" r="9" fill="#eab308"/>
         </svg>`
@@ -546,20 +549,18 @@
         category: "esport",
         categoryName: "eSports Gaming",
         tag: "Populer",
+        image: "", // <-- Ganti foto di sini
         primaryColor: "#06b6d4", // Cyan
         secondaryColor: "#1e293b", // Slate
         desc: "Nuansa futuristik modern bertema cyberpunk digital dengan corak cyan neon dan aksen abu baja.",
         svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
-          <!-- Cyber Lines -->
           <polyline points="40,85 55,75 80,110 80,180" stroke="#06b6d4" stroke-width="3" fill="none"/>
           <polyline points="160,85 145,75 120,110 120,180" stroke="#a855f7" stroke-width="3" fill="none"/>
-          <!-- Glitch Shapes -->
           <rect x="75" y="80" width="50" height="8" fill="#06b6d4" opacity="0.9"/>
           <rect x="85" y="94" width="30" height="4" fill="#a855f7"/>
           <rect x="70" y="130" width="60" height="25" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
           <circle cx="100" cy="142" r="6" fill="#06b6d4"/>
-          <!-- Collar -->
           <path d="M80 40 C100 55 100 55 120 40" fill="none" stroke="#06b6d4" stroke-width="4"/>
         </svg>`
       },
@@ -569,19 +570,17 @@
         category: "football",
         categoryName: "Sepakbola / Tim",
         tag: "Elegan",
+        image: "", // <-- Ganti foto di sini
         primaryColor: "#059669", // Emerald
         secondaryColor: "#d97706", // Gold
         desc: "Kombinasi warna hijau zamrud dengan garis vertikal emas megah, memberikan aura juara berkelas eropa.",
         svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#064e3b" stroke="#047857" stroke-width="2"/>
-          <!-- Vertical Gold Stripes -->
           <rect x="68" y="55" width="10" height="140" fill="#f59e0b" opacity="0.9"/>
           <rect x="95" y="50" width="10" height="145" fill="#f59e0b" opacity="0.9"/>
           <rect x="122" y="55" width="10" height="140" fill="#f59e0b" opacity="0.9"/>
-          <!-- Gold Sleeves Bands -->
           <polygon points="20,55 40,85 30,80 15,58" fill="#f59e0b"/>
           <polygon points="180,55 160,85 170,80 185,58" fill="#f59e0b"/>
-          <!-- Collar V Neck -->
           <path d="M80 40 L100 62 L120 40" fill="none" stroke="#f59e0b" stroke-width="4"/>
         </svg>`
       },
@@ -591,15 +590,14 @@
         category: "badminton",
         categoryName: "Bulutangkis / Badminton",
         tag: "Speed",
+        image: "", // <-- Ganti foto di sini
         primaryColor: "#2563eb", // Royal Blue
         secondaryColor: "#eab308", // Yellow
         desc: "Pola gradasi kilat dinamis biru laut dan kuning terang, dioptimalkan untuk mobilitas tinggi pemain badminton.",
         svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#1d4ed8" stroke="#1e40af" stroke-width="2"/>
-          <!-- Lightning diagonal blast -->
           <polygon points="145,75 90,140 115,140 60,195 95,120 75,120" fill="#facc15"/>
           <path d="M55,95 Q100,120 145,95" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.8"/>
-          <!-- Collar -->
           <path d="M80 40 C100 48 100 48 120 40" fill="none" stroke="#facc15" stroke-width="4"/>
         </svg>`
       },
@@ -609,19 +607,17 @@
         category: "futsal",
         categoryName: "Futsal / Mini Soccer",
         tag: "Minimalis",
+        image: "", // <-- Ganti foto di sini
         primaryColor: "#18181b", // Zinc 900
         secondaryColor: "#e4e4e7", // Zinc 200
         desc: "Desain hitam pekat monokrom dengan aksen abu-abu gradasi matte. Tampilan garang dan eksklusif.",
         svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#18181b" stroke="#3f3f46" stroke-width="2"/>
-          <!-- Camo stealth shapes -->
           <polygon points="60,65 100,50 85,90 55,80" fill="#27272a"/>
           <polygon points="110,60 145,75 130,110 95,95" fill="#3f3f46"/>
           <polygon points="65,110 110,125 100,165 55,150" fill="#27272a"/>
           <polygon points="105,135 145,150 135,190 90,175" fill="#3f3f46"/>
-          <!-- Silver Logo -->
           <circle cx="85" cy="85" r="7" fill="#fafafa"/>
-          <!-- Collar -->
           <path d="M80 40 L100 55 L120 40" fill="none" stroke="#fafafa" stroke-width="3"/>
         </svg>`
       },
@@ -631,6 +627,7 @@
         category: "football",
         categoryName: "Sepakbola / All Sports",
         tag: "Eksklusif",
+        image: "", // <-- Ganti foto di sini
         primaryColor: "#ea580c", // Orange
         secondaryColor: "#0f172a", // Dark
         desc: "Gradasi api menyala oranye ke hitam yang melambangkan semangat juang tim tanpa henti sampai menit akhir.",
@@ -644,7 +641,6 @@
           </defs>
           <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="url(#gradInferno)" stroke="#ea580c" stroke-width="2"/>
           <path d="M60 160 L100 110 L140 160 L145 195 L55 195 Z" fill="#020617" opacity="0.9"/>
-          <!-- Collar -->
           <path d="M80 40 C100 50 100 50 120 40" fill="none" stroke="#fbbf24" stroke-width="4"/>
         </svg>`
       }
@@ -724,7 +720,7 @@
     // STATE APLIKASI
     let selectedJersey = catalogData[0];
     let modalSelectedJersey = null;
-    const whatsappAdminNumber = "6285126260240"; // Ganti dengan nomor WhatsApp Toko
+    const whatsappAdminNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Toko
 
     // HELPER FORMAT RUPIAH
     function formatRupiah(number) {
@@ -754,14 +750,17 @@
         }`;
         card.onclick = () => selectJersey(item.id);
 
+        // Tampilkan gambar jika ada properti image, jika tidak pakai SVG vector bawaan
+        const visualContent = item.image && item.image.trim() !== ""
+          ? `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain transition transform group-hover:scale-105 duration-300" onerror="this.onerror=null; this.parentElement.innerHTML='${item.svg.replace(/"/g, '&quot;')}';">`
+          : `<div class="w-36 h-44 transition transform group-hover:scale-105 duration-300">${item.svg}</div>`;
+
         card.innerHTML = `
           <div class="relative bg-slate-950 p-4 flex items-center justify-center border-b border-slate-800/80 h-52 overflow-hidden">
             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800/90 text-slate-300 border border-slate-700">
               ${item.tag}
             </span>
-            <div class="w-36 h-44 transition transform group-hover:scale-105 duration-300">
-              ${item.svg}
-            </div>
+            ${visualContent}
             <button onclick="openModal('${item.id}', event)" title="Perbesar Desain" class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-xs backdrop-blur border border-slate-700 transition">
               <i class="fa-solid fa-expand"></i>
             </button>
@@ -831,7 +830,13 @@
 
       document.getElementById('modalTitle').innerText = `${item.title} - ${item.categoryName}`;
       document.getElementById('modalDesc').innerText = item.desc;
-      document.getElementById('modalSvgContainer').innerHTML = item.svg;
+      
+      const modalContainer = document.getElementById('modalSvgContainer');
+      if (item.image && item.image.trim() !== "") {
+        modalContainer.innerHTML = `<img src="${item.image}" alt="${item.title}" class="max-h-52 w-auto object-contain mx-auto">`;
+      } else {
+        modalContainer.innerHTML = item.svg;
+      }
 
       const modal = document.getElementById('previewModal');
       modal.classList.remove('hidden');
