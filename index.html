@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Jersey Studio - Katalog & Hitung DP</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            accent: {
+              yellow: '#eab308',
+              navy: '#0f172a',
+              dark: '#090d16'
+            }
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    h1, h2, h3, .brand-font {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+    .tier-badge-active {
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+      border-color: #22c55e !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-black">
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="bg-gradient-to-r from-brand-600 via-emerald-600 to-teal-600 text-slate-950 font-bold text-xs sm:text-sm py-2 px-4 text-center">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <i class="fa-solid fa-sparkles text-amber-300"></i>
+      <span>Skema DP Transparan & Termurah! Order 1 pcs sudah bisa diproses & DP mulai Rp 50.000.</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-900/90 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <i class="fa-solid fa-shirt text-slate-950 text-lg"></i>
+        </div>
+        <div>
+          <span class="text-lg font-extrabold tracking-tight brand-font block text-white">APEX<span class="text-brand-500">JERSEY</span></span>
+          <span class="text-[10px] text-slate-400 tracking-wider uppercase font-semibold">Custom Apparel & Sublimation</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#kalkulator-section" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          <i class="fa-solid fa-calculator text-brand-500"></i> Hitung DP Langsung
+        </a>
+        <button onclick="openGuideModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-brand-400 border border-brand-500/30 transition">
+          <i class="fa-solid fa-circle-question"></i> <span class="hidden sm:inline">Cara Pakai</span>
+        </button>
+        <button onclick="scrollToCalculator()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-brand-500 hover:bg-brand-600 text-slate-950 shadow-md shadow-brand-500/20 transition active:scale-95">
+          <i class="fa-brands fa-whatsapp text-sm"></i> Order Sekarang
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-12 md:py-16 overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-brand-500/10 text-brand-500 border border-brand-500/20">
+          <i class="fa-solid fa-check-circle"></i> Sistem Down Payment (DP) Fleksibel
+        </span>
+        <button onclick="openGuideModal()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 transition">
+          <i class="fa-solid fa-book-open text-brand-400"></i> Lihat Panduan
+        </button>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 max-w-3xl mx-auto">
+        Katalog Desain Jersey & <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-emerald-300">Simulasi DP Instan</span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+        Pilih model desain jersey favorit tim kamu, sesuaikan jumlah pesanan, dan kalkulator kami akan menghitung nominal DP serta rincian biaya secara otomatis tanpa ribet!
+      </p>
+
+      <!-- DP TIERS QUICK LOOK CARDS -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 max-w-5xl mx-auto text-left">
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 1 - 2 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 50.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">Rp 25-50rb / pcs</div>
+        </div>
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 3 - 5 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 100.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">Mulai 20rb / pcs</div>
+        </div>
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 6 - 12 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 250.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">Tim Mini Soccer</div>
+        </div>
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 13 - 24 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 300.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">1 Skuad Lengkap</div>
+        </div>
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 25 - 50 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 500.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">Turnamen/Instansi</div>
+        </div>
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 hover:border-slate-700 transition">
+          <div class="text-[11px] text-slate-400">Order 51 - 100 pcs</div>
+          <div class="text-sm font-extrabold text-white mt-1">DP 1.000.000</div>
+          <div class="text-[10px] text-brand-500 mt-0.5">Komunitas Besar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT SECTION: CATALOG & DESIGN SELECTOR (7 Cols) -->
+      <section class="lg:col-span-7 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <i class="fa-solid fa-layer-group text-brand-500"></i> Pilih Desain Mockup
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">Klik desain untuk memilih mockup yang ingin kamu pesan</p>
+          </div>
+
+          <!-- Category Filters -->
+          <div class="flex flex-wrap gap-1.5" id="categoryFilters">
+            <button onclick="filterCategory('all')" class="category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-500 text-slate-950 transition active:scale-95" data-category="all">Semua</button>
+            <button onclick="filterCategory('football')" class="category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition active:scale-95" data-category="football">Sepakbola</button>
+            <button onclick="filterCategory('futsal')" class="category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition active:scale-95" data-category="futsal">Futsal</button>
+            <button onclick="filterCategory('esport')" class="category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition active:scale-95" data-category="esport">eSports</button>
+            <button onclick="filterCategory('badminton')" class="category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition active:scale-95" data-category="badminton">Badminton</button>
+          </div>
+        </div>
+
+        <!-- Selected Design Highlight Badge -->
+        <div class="bg-gradient-to-r from-slate-900 to-slate-850 p-4 rounded-2xl border border-slate-800 flex items-center justify-between shadow-inner">
+          <div class="flex items-center gap-3">
+            <div id="selectedColorPreview" class="w-7 h-7 rounded-lg border border-white/20 shadow"></div>
+            <div>
+              <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Desain Terpilih:</div>
+              <div id="selectedDesignTitle" class="text-sm sm:text-base font-extrabold text-white">Vortex Crimson Edition</div>
+            </div>
+          </div>
+          <span id="selectedCategoryBadge" class="text-xs font-bold px-2.5 py-1 rounded bg-slate-800 text-brand-500 border border-brand-500/20">Futsal / Bola</span>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="jerseyGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Dynamically populated via Javascript -->
+        </div>
+
+        <!-- Material & Finishing Customization Options -->
+        <div class="bg-slate-900/90 rounded-2xl p-5 border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-brand-500"></i> Spesifikasi & Kustomisasi Bahan
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Pilihan Bahan -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1.5">Jenis Bahan Kain</label>
+              <select id="materialSelect" onchange="updateCalculations()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                <option value="125000" data-name="Milano Premium (Standar)" selected>Drifit Milano Premium - Rp 125.000/pcs</option>
+                <option value="135000" data-name="Drifit Brazil Super">Drifit Brazil Super Lembut - Rp 135.000/pcs</option>
+                <option value="145000" data-name="Drifit Benzema Motif">Drifit Benzema Diamond - Rp 145.000/pcs</option>
+                <option value="155000" data-name="Polyester Premium Pro Jacquard">Jacquard Pro Player - Rp 155.000/pcs</option>
+              </select>
+            </div>
+
+            <!-- Model Kerah -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1.5">Model Kerah / Kerah Khusus</label>
+              <select id="collarSelect" onchange="updateCalculations()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                <option value="0" data-name="O-Neck (Bulat)" selected>O-Neck (Kerah Bulat Standar) +Rp 0</option>
+                <option value="5000" data-name="V-Neck Rib Custom">V-Neck Modern Rib +Rp 5.000</option>
+                <option value="10000" data-name="Polo / Wangki + Kancing">Polo Wangki Berkerah +Rp 10.000</option>
+                <option value="12000" data-name="Kerah Shanghai Sport">Kerah Shanghai Sport +Rp 12.000</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="pt-2 text-[11px] text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-brand-500"></i>
+            <span>Semua paket sudah termasuk <strong>Full Printing Sublime Sublimasi HQ</strong>, Cetak Nama, No Punggung & Logo Tim Bebas.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT SECTION: DP CALCULATOR & ORDER SUMMARY (5 Cols) -->
+      <section id="kalkulator-section" class="lg:col-span-5 sticky top-20">
+        <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 rounded-2xl border border-slate-700/80 p-5 sm:p-6 shadow-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+          <!-- Header Kalkulator -->
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
+            <div>
+              <h2 class="text-lg font-black text-white flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-brand-500"></i> Kalkulator DP & Order
+              </h2>
+              <span class="text-xs text-slate-400">Aturan DP bertingkat otomatis</span>
+            </div>
+            <span class="px-2.5 py-1 text-[11px] font-extrabold uppercase rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">
+              Live Calc
+            </span>
+          </div>
+
+          <!-- INPUT JUMLAH PESANAN (QTY) -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label for="qtyInput" class="text-xs font-bold uppercase tracking-wider text-slate-300">
+                  Jumlah Pesanan (Pcs):
+                </label>
+                <span id="tierLabelInfo" class="text-xs font-bold text-brand-400">Tier: 1 - 2 pcs</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="adjustQty(-1)" class="w-11 h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-lg flex items-center justify-center border border-slate-700 active:scale-95 transition">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <div class="relative flex-1">
+                  <input type="number" id="qtyInput" min="1" max="1000" value="12" oninput="handleQtyChange()" class="w-full text-center bg-slate-800/90 border border-slate-700 rounded-xl py-2.5 px-3 text-lg font-black text-white focus:outline-none focus:border-brand-500 tracking-wide">
+                  <span class="absolute right-3 top-3 text-xs text-slate-500 font-bold pointer-events-none">PCS</span>
+                </div>
+                <button type="button" onclick="adjustQty(1)" class="w-11 h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-lg flex items-center justify-center border border-slate-700 active:scale-95 transition">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+
+              <!-- Quick Presets -->
+              <div class="flex items-center gap-1.5 mt-2.5 overflow-x-auto pb-1 text-xs">
+                <span class="text-[11px] text-slate-500 mr-1">Preset:</span>
+                <button onclick="setPresetQty(1)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">1 (Sample)</button>
+                <button onclick="setPresetQty(6)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">6 (Futsal)</button>
+                <button onclick="setPresetQty(12)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">12 (1 Tim)</button>
+                <button onclick="setPresetQty(24)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">24 (2 Tim)</button>
+                <button onclick="setPresetQty(50)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">50</button>
+                <button onclick="setPresetQty(100)" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] font-semibold">100</button>
+              </div>
+            </div>
+
+            <!-- OPTIMIZATION SMART TIP / UPSELL -->
+            <div id="optimizationCard" class="p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5">
+              <i class="fa-solid fa-lightbulb text-amber-400 mt-0.5 text-sm"></i>
+              <div class="text-slate-300 leading-snug" id="optimizationText">
+                Memuat rekomendasi optimasi...
+              </div>
+            </div>
+          </div>
+
+          <!-- HASIL KALKULASI & BREAKDOWN BIAYA -->
+          <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-3 mb-6">
+            <div class="flex justify-between items-center text-xs text-slate-400">
+              <span>Harga Satuan (Bahan + Kerah)</span>
+              <span id="unitPriceDisplay" class="font-bold text-slate-200">Rp 125.000 / pcs</span>
+            </div>
+
+            <div class="flex justify-between items-center text-xs text-slate-400">
+              <span>Total Nilai Pesanan (<span id="qtySummary">12</span> pcs)</span>
+              <span id="totalBillDisplay" class="font-bold text-slate-200">Rp 1.500.000</span>
+            </div>
+
+            <div class="border-t border-slate-800 pt-3">
+              <div class="flex justify-between items-end">
+                <div>
+                  <span class="text-[11px] font-bold text-brand-400 uppercase tracking-wider block">Wajib Down Payment (DP)</span>
+                  <span class="text-[10px] text-slate-400" id="dpTierNote">Aturan DP 6 - 12 pcs</span>
+                </div>
+                <div class="text-right">
+                  <span id="dpAmountDisplay" class="text-2xl font-black text-brand-400 tracking-tight">Rp 250.000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs text-slate-400 pt-2 border-t border-dashed border-slate-800">
+              <span>Sisa Pelunasan (Setelah Jersey Jadi)</span>
+              <span id="remainingBillDisplay" class="font-bold text-amber-400">Rp 1.250.000</span>
+            </div>
+          </div>
+
+          <!-- INPUT NAMA PEMESAN & TIM -->
+          <div class="space-y-3 mb-5">
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Nama Pemesan / Kontak PIC</label>
+              <input type="text" id="customerName" placeholder="Contoh: Budi Santoso" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-brand-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Nama Tim / Komunitas</label>
+              <input type="text" id="teamName" placeholder="Contoh: Garuda FC Nusantara" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-brand-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Catatan Tambahan (Opsional)</label>
+              <textarea id="orderNotes" rows="2" placeholder="Catatan lengan panjang, nomor punggung, atau request warna..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-brand-500 resize-none"></textarea>
+            </div>
+          </div>
+
+          <!-- TOMBOL AKSI UTAMA -->
+          <div class="space-y-2">
+            <button type="button" onclick="checkoutWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-[0.99] transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Kirim Pesanan & Booking DP via WA</span>
+            </button>
+            <button type="button" onclick="copyOrderSummary()" class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 font-semibold text-xs flex items-center justify-center gap-2 border border-slate-700 active:scale-[0.99] transition">
+              <i class="fa-regular fa-copy"></i>
+              <span id="copyBtnText">Salin Rincian Pesanan</span>
+            </button>
+          </div>
+
+          <!-- Keamanan & Garansi -->
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-around text-center text-[10px] text-slate-400">
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-shield-halved text-brand-500"></i> DP Resmi Bergaransi
+            </div>
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-rotate-left text-brand-500"></i> Free Revisi Desain 3x
+            </div>
+            <div class="flex items-center gap-1">
+              <i class="fa-solid fa-truck-fast text-brand-500"></i> Kirim Se-Indonesia
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL DETAIL PREVIEW DESAIN -->
+  <div id="previewModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl relative animate-fade-in">
+      <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+        <h3 id="modalTitle" class="text-base font-bold text-white">Detail Desain</h3>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 text-center">
+        <!-- SVG Mockup Preview -->
+        <div id="modalSvgContainer" class="w-56 h-60 mx-auto mb-4 flex items-center justify-center bg-slate-950/60 rounded-xl p-4 border border-slate-800"></div>
+        <p id="modalDesc" class="text-xs text-slate-400 mb-4"></p>
+        <div class="flex gap-2">
+          <button onclick="selectCurrentModalJersey()" class="flex-1 py-2.5 px-4 bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-xs rounded-xl transition">
+            Pilih Desain Ini Untuk Dihitung
+          </button>
+          <button onclick="closeModal()" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl transition">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PANDUAN CARA PENGGUNAAN -->
+  <div id="guideModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in text-left">
+      <div class="p-4 sm:p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950 sticky top-0 z-10">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-circle-question"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Panduan Penggunaan Aplikasi</h3>
+            <p class="text-[11px] text-slate-400">Langkah mudah memilih jersey & menghitung DP</p>
+          </div>
+        </div>
+        <button onclick="closeGuideModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-6 text-sm text-slate-300">
+        <!-- Step by Step -->
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">1</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Pilih Desain Mockup Jersey</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Gunakan filter kategori (Sepakbola, Futsal, eSports, Badminton). Klik kartu jersey yang disukai atau tombol ikon perbesar untuk melihat mockup.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">2</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Tentukan Bahan & Model Kerah</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Pilih jenis kain (Milano, Brazil, Benzema, Jacquard) dan model kerah (O-Neck, V-Neck, Polo). Harga per potong akan terhitung otomatis.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">3</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Masukkan Jumlah Pesanan (Qty)</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Ketik jumlah pesanan atau gunakan tombol (+) / (-) / Preset cepat. <strong>Nominal DP dan sisa pelunasan langsung terkalkulasi secara realtime</strong> mengikuti aturan tier.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">4</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Perhatikan Tips "Optimasi DP"</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Kotak lampu berwarna hijau/kuning akan memberi tahu jika Anda bisa menambah 1-3 pcs jersey lagi dalam tarif DP yang sama tanpa menambah biaya DP.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">5</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Kirim & Konfirmasi ke WhatsApp</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Isi nama PIC dan nama tim, lalu klik <strong>"Kirim Pesanan & Booking DP via WA"</strong>. Format rincian pemesanan beserta rincian DP akan tersusun otomatis untuk admin.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabel Ringkasan Tier DP -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-tags"></i> Skema Nilai DP Resmi:
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">1 - 2 Pcs</span>
+              <span class="font-bold text-white">DP Rp 50.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">3 - 5 Pcs</span>
+              <span class="font-bold text-white">DP Rp 100.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">6 - 12 Pcs</span>
+              <span class="font-bold text-white">DP Rp 250.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">13 - 24 Pcs</span>
+              <span class="font-bold text-white">DP Rp 300.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">25 - 50 Pcs</span>
+              <span class="font-bold text-white">DP Rp 500.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[11px]">51 - 100 Pcs</span>
+              <span class="font-bold text-white">DP Rp 1.000.000</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="closeGuideModal()" class="w-full py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-xs transition">
+          Saya Mengerti, Mulai Pilih Jersey
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-slate-900 border border-brand-500/40 text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+    <span id="toastMessage">Pesan pemberitahuan</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-16 bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-8">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+      <div class="font-bold text-slate-300 text-sm">Custom Apparel & Sublimation Jersey Workshop</div>
+      <p>Skema DP: 1-2 pcs (50rb) • 3-5 pcs (100rb) • 6-12 pcs (250rb) • 13-24 pcs (300rb) • 25-50 pcs (500rb) • 51-100 pcs (1.000.000)</p>
+      <div class="text-slate-500 text-[11px] pt-2">© 2026 Apex Jersey Studio. Seluruh hak cipta dilindungi.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // DATA KATALOG DESAIN JERSEY MOCKUP DENGAN VECTOR SVG
+    const catalogData = [
+      {
+        id: "J-01",
+        title: "Vortex Crimson Striker",
+        category: "futsal",
+        categoryName: "Futsal / Mini Soccer",
+        tag: "Terlaris",
+        primaryColor: "#dc2626", // Red
+        secondaryColor: "#1e1b4b", // Deep Blue
+        desc: "Kombinasi motif geometris energik warna merah crimson dan navy gelap. Sangat cocok untuk tim penyerang dengan tempo cepat.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L155 37 L145 75 L145 195 L125 195 L130 70 L100 90 L70 70 L75 195 L55 195 L55 75 L45 37 Z" fill="#991b1b" opacity="0.4"/>
+          <!-- Dynamic diagonal patterns -->
+          <polygon points="65,100 135,60 140,80 70,120" fill="#0f172a" opacity="0.8"/>
+          <polygon points="60,135 130,95 135,115 65,155" fill="#f8fafc" opacity="0.9"/>
+          <polygon points="55,170 125,130 130,150 60,190" fill="#0f172a" opacity="0.8"/>
+          <!-- Collar -->
+          <path d="M80 40 C100 52 100 52 120 40" fill="none" stroke="#f8fafc" stroke-width="4"/>
+          <circle cx="120" cy="85" r="9" fill="#eab308"/>
+        </svg>`
+      },
+      {
+        id: "J-02",
+        title: "Cyberpunk Volt eSport",
+        category: "esport",
+        categoryName: "eSports Gaming",
+        tag: "Populer",
+        primaryColor: "#06b6d4", // Cyan
+        secondaryColor: "#1e293b", // Slate
+        desc: "Nuansa futuristik modern bertema cyberpunk digital dengan corak cyan neon dan aksen abu baja.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+          <!-- Cyber Lines -->
+          <polyline points="40,85 55,75 80,110 80,180" stroke="#06b6d4" stroke-width="3" fill="none"/>
+          <polyline points="160,85 145,75 120,110 120,180" stroke="#a855f7" stroke-width="3" fill="none"/>
+          <!-- Glitch Shapes -->
+          <rect x="75" y="80" width="50" height="8" fill="#06b6d4" opacity="0.9"/>
+          <rect x="85" y="94" width="30" height="4" fill="#a855f7"/>
+          <rect x="70" y="130" width="60" height="25" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+          <circle cx="100" cy="142" r="6" fill="#06b6d4"/>
+          <!-- Collar -->
+          <path d="M80 40 C100 55 100 55 120 40" fill="none" stroke="#06b6d4" stroke-width="4"/>
+        </svg>`
+      },
+      {
+        id: "J-03",
+        title: "Emerald Royale Klasik",
+        category: "football",
+        categoryName: "Sepakbola / Tim",
+        tag: "Elegan",
+        primaryColor: "#059669", // Emerald
+        secondaryColor: "#d97706", // Gold
+        desc: "Kombinasi warna hijau zamrud dengan garis vertikal emas megah, memberikan aura juara berkelas eropa.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#064e3b" stroke="#047857" stroke-width="2"/>
+          <!-- Vertical Gold Stripes -->
+          <rect x="68" y="55" width="10" height="140" fill="#f59e0b" opacity="0.9"/>
+          <rect x="95" y="50" width="10" height="145" fill="#f59e0b" opacity="0.9"/>
+          <rect x="122" y="55" width="10" height="140" fill="#f59e0b" opacity="0.9"/>
+          <!-- Gold Sleeves Bands -->
+          <polygon points="20,55 40,85 30,80 15,58" fill="#f59e0b"/>
+          <polygon points="180,55 160,85 170,80 185,58" fill="#f59e0b"/>
+          <!-- Collar V Neck -->
+          <path d="M80 40 L100 62 L120 40" fill="none" stroke="#f59e0b" stroke-width="4"/>
+        </svg>`
+      },
+      {
+        id: "J-04",
+        title: "Smash Lightning Aero",
+        category: "badminton",
+        categoryName: "Bulutangkis / Badminton",
+        tag: "Speed",
+        primaryColor: "#2563eb", // Royal Blue
+        secondaryColor: "#eab308", // Yellow
+        desc: "Pola gradasi kilat dinamis biru laut dan kuning terang, dioptimalkan untuk mobilitas tinggi pemain badminton.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#1d4ed8" stroke="#1e40af" stroke-width="2"/>
+          <!-- Lightning diagonal blast -->
+          <polygon points="145,75 90,140 115,140 60,195 95,120 75,120" fill="#facc15"/>
+          <path d="M55,95 Q100,120 145,95" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.8"/>
+          <!-- Collar -->
+          <path d="M80 40 C100 48 100 48 120 40" fill="none" stroke="#facc15" stroke-width="4"/>
+        </svg>`
+      },
+      {
+        id: "J-05",
+        title: "Monochrome Stealth Stealth",
+        category: "futsal",
+        categoryName: "Futsal / Mini Soccer",
+        tag: "Minimalis",
+        primaryColor: "#18181b", // Zinc 900
+        secondaryColor: "#e4e4e7", // Zinc 200
+        desc: "Desain hitam pekat monokrom dengan aksen abu-abu gradasi matte. Tampilan garang dan eksklusif.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="#18181b" stroke="#3f3f46" stroke-width="2"/>
+          <!-- Camo stealth shapes -->
+          <polygon points="60,65 100,50 85,90 55,80" fill="#27272a"/>
+          <polygon points="110,60 145,75 130,110 95,95" fill="#3f3f46"/>
+          <polygon points="65,110 110,125 100,165 55,150" fill="#27272a"/>
+          <polygon points="105,135 145,150 135,190 90,175" fill="#3f3f46"/>
+          <!-- Silver Logo -->
+          <circle cx="85" cy="85" r="7" fill="#fafafa"/>
+          <!-- Collar -->
+          <path d="M80 40 L100 55 L120 40" fill="none" stroke="#fafafa" stroke-width="3"/>
+        </svg>`
+      },
+      {
+        id: "J-06",
+        title: "Inferno Blaze Horizon",
+        category: "football",
+        categoryName: "Sepakbola / All Sports",
+        tag: "Eksklusif",
+        primaryColor: "#ea580c", // Orange
+        secondaryColor: "#0f172a", // Dark
+        desc: "Gradasi api menyala oranye ke hitam yang melambangkan semangat juang tim tanpa henti sampai menit akhir.",
+        svg: `<svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-lg">
+          <defs>
+            <linearGradient id="gradInferno" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
+              <stop offset="60%" style="stop-color:#9a3412;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path d="M60 25 L80 40 C100 50 100 50 120 40 L140 25 L180 55 L160 85 L145 75 L145 195 L55 195 L55 75 L40 85 L20 55 Z" fill="url(#gradInferno)" stroke="#ea580c" stroke-width="2"/>
+          <path d="M60 160 L100 110 L140 160 L145 195 L55 195 Z" fill="#020617" opacity="0.9"/>
+          <!-- Collar -->
+          <path d="M80 40 C100 50 100 50 120 40" fill="none" stroke="#fbbf24" stroke-width="4"/>
+        </svg>`
+      }
+    ];
+
+    // ATURAN DOWN PAYMENT (DP) BERDASARKAN SPESIFIKASI USER:
+    // 1-2   -> 50.000
+    // 3-5   -> 100.000
+    // 6-12  -> 250.000
+    // 13-24 -> 300.000 (catatan: range 12-24, disesuaikan batas atas 6-12 adalah 12, maka 13-24 = 300.000)
+    // 25-50 -> 500.000
+    // 51-100-> 1.000.000
+    function calculateDP(quantity) {
+      const qty = parseInt(quantity) || 1;
+      
+      if (qty >= 1 && qty <= 2) {
+        return {
+          dp: 50000,
+          tierName: "Tier 1: 1 - 2 pcs",
+          nextTierQty: 3,
+          dpPerPcs: 50000 / qty,
+          desc: "DP Ringan untuk Pesanan Satuan / Sample"
+        };
+      } else if (qty >= 3 && qty <= 5) {
+        return {
+          dp: 100000,
+          tierName: "Tier 2: 3 - 5 pcs",
+          nextTierQty: 6,
+          dpPerPcs: 100000 / qty,
+          desc: "DP Hemat untuk Tim Kecil / Trio"
+        };
+      } else if (qty >= 6 && qty <= 12) {
+        return {
+          dp: 250000,
+          tierName: "Tier 3: 6 - 12 pcs",
+          nextTierQty: 13,
+          dpPerPcs: 250000 / qty,
+          desc: "Paket Favorit Skuad Futsal & Mini Soccer"
+        };
+      } else if (qty >= 13 && qty <= 24) {
+        return {
+          dp: 300000,
+          tierName: "Tier 4: 13 - 24 pcs",
+          nextTierQty: 25,
+          dpPerPcs: 300000 / qty,
+          desc: "Sangat Hemat! Hanya 300rb untuk 1 Skuad Lengkap"
+        };
+      } else if (qty >= 25 && qty <= 50) {
+        return {
+          dp: 500000,
+          tierName: "Tier 5: 25 - 50 pcs",
+          nextTierQty: 51,
+          dpPerPcs: 500000 / qty,
+          desc: "Pilihan Instansi & Komunitas Semi-Besar"
+        };
+      } else if (qty >= 51 && qty <= 100) {
+        return {
+          dp: 1000000,
+          tierName: "Tier 6: 51 - 100 pcs",
+          nextTierQty: null,
+          dpPerPcs: 1000000 / qty,
+          desc: "Skala Produksi Massal / Turnamen Akbar"
+        };
+      } else {
+        // Jika order lebih dari 100 pcs (Skala pabrikan proporsional kelipatan)
+        const multiplier = Math.ceil(qty / 100);
+        return {
+          dp: multiplier * 1000000,
+          tierName: `Tier Custom: > 100 pcs (${qty} pcs)`,
+          nextTierQty: null,
+          dpPerPcs: (multiplier * 1000000) / qty,
+          desc: "Order Partai Besar"
+        };
+      }
+    }
+
+    // STATE APLIKASI
+    let selectedJersey = catalogData[0];
+    let modalSelectedJersey = null;
+    const whatsappAdminNumber = "6285126260240"; // Ganti dengan nomor WhatsApp Toko
+
+    // HELPER FORMAT RUPIAH
+    function formatRupiah(number) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(number);
+    }
+
+    // RENDER KATALOG JERSEY
+    function renderCatalog(filter = 'all') {
+      const grid = document.getElementById('jerseyGrid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all' 
+        ? catalogData 
+        : catalogData.filter(item => item.category === filter);
+
+      filtered.forEach(item => {
+        const isSelected = item.id === selectedJersey.id;
+        const card = document.createElement('div');
+        card.className = `group bg-slate-900 rounded-2xl border transition-all duration-200 overflow-hidden flex flex-col cursor-pointer ${
+          isSelected 
+            ? 'border-brand-500 ring-2 ring-brand-500/30 bg-slate-850' 
+            : 'border-slate-800 hover:border-slate-700 hover:bg-slate-850/60'
+        }`;
+        card.onclick = () => selectJersey(item.id);
+
+        card.innerHTML = `
+          <div class="relative bg-slate-950 p-4 flex items-center justify-center border-b border-slate-800/80 h-52 overflow-hidden">
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800/90 text-slate-300 border border-slate-700">
+              ${item.tag}
+            </span>
+            <div class="w-36 h-44 transition transform group-hover:scale-105 duration-300">
+              ${item.svg}
+            </div>
+            <button onclick="openModal('${item.id}', event)" title="Perbesar Desain" class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-xs backdrop-blur border border-slate-700 transition">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                <span>${item.categoryName}</span>
+                <span class="font-mono text-slate-500">${item.id}</span>
+              </div>
+              <h4 class="text-sm font-bold text-white group-hover:text-brand-400 transition">${item.title}</h4>
+              <p class="text-[11px] text-slate-400 line-clamp-2 mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between">
+              <span class="text-xs font-semibold ${isSelected ? 'text-brand-400' : 'text-slate-400'}">
+                <i class="fa-solid ${isSelected ? 'fa-circle-check text-brand-500' : 'fa-circle'} mr-1"></i>
+                ${isSelected ? 'Dipilih' : 'Klik untuk Pilih'}
+              </span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full border border-slate-600 shadow" style="background-color: ${item.primaryColor};"></span>
+                <span class="w-3.5 h-3.5 rounded-full border border-slate-600 shadow" style="background-color: ${item.secondaryColor};"></span>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // PILIH JERSEY
+    function selectJersey(id) {
+      const found = catalogData.find(item => item.id === id);
+      if (found) {
+        selectedJersey = found;
+        document.getElementById('selectedDesignTitle').innerText = `${found.title} (${found.id})`;
+        document.getElementById('selectedCategoryBadge').innerText = found.categoryName;
+        document.getElementById('selectedColorPreview').style.backgroundColor = found.primaryColor;
+        renderCatalog(getCurrentCategoryFilter());
+        updateCalculations();
+        showToast(`Desain ${found.title} dipilih!`);
+      }
+    }
+
+    function getCurrentCategoryFilter() {
+      const activeBtn = document.querySelector('.category-btn.bg-brand-500');
+      return activeBtn ? activeBtn.getAttribute('data-category') : 'all';
+    }
+
+    // FILTER KATEGORI
+    function filterCategory(category) {
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          btn.className = "category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-500 text-slate-950 transition active:scale-95";
+        } else {
+          btn.className = "category-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition active:scale-95";
+        }
+      });
+      renderCatalog(category);
+    }
+
+    // MODAL PREVIEW LOGIC
+    function openModal(id, e) {
+      e.stopPropagation();
+      const item = catalogData.find(i => i.id === id);
+      if (!item) return;
+      modalSelectedJersey = item;
+
+      document.getElementById('modalTitle').innerText = `${item.title} - ${item.categoryName}`;
+      document.getElementById('modalDesc').innerText = item.desc;
+      document.getElementById('modalSvgContainer').innerHTML = item.svg;
+
+      const modal = document.getElementById('previewModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('previewModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectCurrentModalJersey() {
+      if (modalSelectedJersey) {
+        selectJersey(modalSelectedJersey.id);
+        closeModal();
+      }
+    }
+
+    // PANDUAN MODAL
+    function openGuideModal() {
+      const modal = document.getElementById('guideModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeGuideModal() {
+      const modal = document.getElementById('guideModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // LOGIKA PERHITUNGAN UTAMA & OPTIMASI DP
+    function updateCalculations() {
+      const qtyInput = document.getElementById('qtyInput');
+      let qty = parseInt(qtyInput.value) || 1;
+      if (qty < 1) qty = 1;
+
+      // Harga Bahan & Kerah
+      const materialSelect = document.getElementById('materialSelect');
+      const collarSelect = document.getElementById('collarSelect');
+
+      const materialPrice = parseInt(materialSelect.value) || 125000;
+      const collarPrice = parseInt(collarSelect.value) || 0;
+      const unitPrice = materialPrice + collarPrice;
+
+      // Total Biaya
+      const totalBill = unitPrice * qty;
+
+      // Hitung DP berdasarkan aturan berjenjang
+      const dpData = calculateDP(qty);
+
+      // Sisa Pelunasan
+      const remainingBill = Math.max(0, totalBill - dpData.dp);
+
+      // Render Hasil ke UI
+      document.getElementById('tierLabelInfo').innerText = dpData.tierName;
+      document.getElementById('dpTierNote').innerText = `Kategori Pesanan: ${qty} Pcs`;
+      document.getElementById('unitPriceDisplay').innerText = `${formatRupiah(unitPrice)} / pcs`;
+      document.getElementById('qtySummary').innerText = qty;
+      document.getElementById('totalBillDisplay').innerText = formatRupiah(totalBill);
+      document.getElementById('dpAmountDisplay').innerText = formatRupiah(dpData.dp);
+      document.getElementById('remainingBillDisplay').innerText = formatRupiah(remainingBill);
+
+      // SMART OPTIMIZATION TIP
+      generateOptimizationTip(qty, dpData);
+    }
+
+    // ANALISIS OPTIMASI DP UNTUK PEMBELI
+    function generateOptimizationTip(qty, dpData) {
+      const tipElement = document.getElementById('optimizationText');
+      const optCard = document.getElementById('optimizationCard');
+
+      if (qty === 1) {
+        tipElement.innerHTML = `<strong>Tips Hemat:</strong> Tambah 1 pcs lagi (total 2 pcs), nilai DP tetap sama <strong>Rp 50.000</strong> (hanya Rp 25.000/pcs)!`;
+        optCard.className = "p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty === 2) {
+        tipElement.innerHTML = `<strong>Keren!</strong> Anda memaksimalkan kuota Tier 1-2 pcs (DP Rp 50.000). Jika butuh 3 pcs, DP naik sedikit ke Rp 100.000.`;
+        optCard.className = "p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty >= 3 && qty <= 4) {
+        tipElement.innerHTML = `<strong>Optimasi Tier:</strong> Anda berada di tier DP Rp 100.000 (3-5 pcs). Anda masih bisa menambah hingga <strong>5 pcs</strong> tanpa kenaikan biaya DP!`;
+        optCard.className = "p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty >= 6 && qty < 12) {
+        const sisa = 12 - qty;
+        tipElement.innerHTML = `<strong>Rekomendasi Skuad:</strong> Order <strong>${qty} pcs</strong> DP-nya Rp 250.000. Kuota tier ini sampai 12 pcs, Anda bisa nambah <strong>+${sisa} pcs</strong> jersey cadangan/kiper dengan DP yang sama!`;
+        optCard.className = "p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty === 12) {
+        tipElement.innerHTML = `<strong>Titik Paling Efisien:</strong> 12 pcs adalah batas maksimal tier DP Rp 250.000 (hanya sekitar Rp 20.800 per potong DP-nya!).`;
+        optCard.className = "p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty >= 13 && qty < 24) {
+        const sisa = 24 - qty;
+        tipElement.innerHTML = `<strong>Tier 13-24 pcs Sangat Murah:</strong> DP hanya Rp 300.000 untuk sampai 24 potong. Bebas tambah hingga <strong>+${sisa} pcs</strong> tanpa nambah DP.`;
+        optCard.className = "p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty >= 25 && qty < 50) {
+        tipElement.innerHTML = `<strong>Order Komunitas/Turnamen:</strong> DP Rp 500.000 meng-cover pesanan hingga 50 pcs (rata-rata hanya 10rb - 20rb per potong!).`;
+        optCard.className = "p-3 bg-blue-500/10 border border-blue-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else if (qty >= 50 && qty <= 100) {
+        tipElement.innerHTML = `<strong>Produksi Besar (51-100 pcs):</strong> DP Rp 1.000.000 sudah mengunci antrean mesin sublim prioritas dan free sample bahan fisik!`;
+        optCard.className = "p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      } else {
+        tipElement.innerHTML = `<strong>Order Massal:</strong> Pesanan di atas 100 pcs mendapatkan asistensi vendor khusus dan garansi cetak tepat waktu.`;
+        optCard.className = "p-3 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs flex items-start gap-2.5";
+      }
+    }
+
+    // ADJUST QTY CONTROLS
+    function adjustQty(delta) {
+      const input = document.getElementById('qtyInput');
+      let currentVal = parseInt(input.value) || 1;
+      let newVal = currentVal + delta;
+      if (newVal < 1) newVal = 1;
+      input.value = newVal;
+      updateCalculations();
+    }
+
+    function handleQtyChange() {
+      const input = document.getElementById('qtyInput');
+      if (input.value === '' || parseInt(input.value) < 1) {
+        // do nothing yet
+      } else {
+        updateCalculations();
+      }
+    }
+
+    function setPresetQty(val) {
+      const input = document.getElementById('qtyInput');
+      input.value = val;
+      updateCalculations();
+    }
+
+    function scrollToCalculator() {
+      document.getElementById('kalkulator-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FORMAT DATA STRUK ORDER
+    function getOrderPayload() {
+      const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+      const materialElem = document.getElementById('materialSelect');
+      const collarElem = document.getElementById('collarSelect');
+      const materialName = materialElem.options[materialElem.selectedIndex].getAttribute('data-name');
+      const collarName = collarElem.options[collarElem.selectedIndex].getAttribute('data-name');
+
+      const materialPrice = parseInt(materialElem.value) || 125000;
+      const collarPrice = parseInt(collarElem.value) || 0;
+      const unitPrice = materialPrice + collarPrice;
+      const totalBill = unitPrice * qty;
+      const dpData = calculateDP(qty);
+      const remaining = Math.max(0, totalBill - dpData.dp);
+
+      const customerName = document.getElementById('customerName').value.trim() || 'Pelanggan';
+      const teamName = document.getElementById('teamName').value.trim() || '-';
+      const notes = document.getElementById('orderNotes').value.trim() || 'Tidak ada catatan khusus';
+
+      return {
+        customerName,
+        teamName,
+        notes,
+        designCode: selectedJersey.id,
+        designTitle: selectedJersey.title,
+        category: selectedJersey.categoryName,
+        materialName,
+        collarName,
+        qty,
+        unitPrice,
+        totalBill,
+        dp: dpData.dp,
+        dpTier: dpData.tierName,
+        remaining
+      };
+    }
+
+    // INTEGRASI WHATSAPP
+    function checkoutWhatsApp() {
+      const data = getOrderPayload();
+
+      const messageText = 
+`*HALO APEX JERSEY, SAYA MAU BOOKING ORDER & DP:*
+────────────────────────────
+👤 *Nama Pemesan:* ${data.customerName}
+⚽ *Nama Tim:* ${data.teamName}
+
+👕 *PILIHAN DESAIN:*
+• Kode Mockup: ${data.designCode} - ${data.designTitle}
+• Kategori: ${data.category}
+• Jenis Bahan: ${data.materialName}
+• Pilihan Kerah: ${data.collarName}
+
+📊 *RINCIAN JUMLAH & BIAYA:*
+• Jumlah Pesanan: *${data.qty} Pcs*
+• Biaya per Pcs: ${formatRupiah(data.unitPrice)}
+• Total Tagihan: *${formatRupiah(data.totalBill)}*
+• Skema Tier: ${data.dpTier}
+• *Wajib DP Masuk: ${formatRupiah(data.dp)}*
+• Sisa Pelunasan: ${formatRupiah(data.remaining)}
+
+📝 *Catatan Khusus:*
+"${data.notes}"
+────────────────────────────
+Mohon konfirmasi nomor rekening resmi untuk pembayaran DP dan proses antrean mockup desain tim kami. Terima kasih!`;
+
+      const encoded = encodeURIComponent(messageText);
+      const waUrl = `https://wa.me/${whatsappAdminNumber}?text=${encoded}`;
+      window.open(waUrl, '_blank');
+      showToast("Membuka WhatsApp untuk mengirim pesanan...");
+    }
+
+    // SALIN KE CLIPBOARD
+    function copyOrderSummary() {
+      const data = getOrderPayload();
+      const summaryText = 
+`RINCIAN PESANAN JERSEY & DP
+Nama: ${data.customerName} (${data.teamName})
+Desain: ${data.designCode} - ${data.designTitle}
+Bahan: ${data.materialName} | Kerah: ${data.collarName}
+Qty: ${data.qty} pcs @ ${formatRupiah(data.unitPrice)}
+Total Biaya: ${formatRupiah(data.totalBill)}
+DP Terhitung: ${formatRupiah(data.dp)} (${data.dpTier})
+Sisa Tagihan: ${formatRupiah(data.remaining)}
+Catatan: ${data.notes}`;
+
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = summaryText;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+
+      const copyBtnText = document.getElementById('copyBtnText');
+      const originalText = copyBtnText.innerText;
+      copyBtnText.innerText = "Tersalin ke Clipboard!";
+      setTimeout(() => {
+        copyBtnText.innerText = originalText;
+      }, 2500);
+
+      showToast("Rincian pesanan berhasil disalin!");
+    }
+
+    // TOAST NOTIFIKASI
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgElem = document.getElementById('toastMessage');
+      msgElem.innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // INISIALISASI
+    window.onload = function() {
+      renderCatalog('all');
+      selectJersey(catalogData[0].id);
+      updateCalculations();
+    };
+  </script>
+</body>
+</html>
